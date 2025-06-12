@@ -56,7 +56,6 @@ Most event discovery platforms are based on categories or what's trending — no
 ### Development Tools:
 
 - Vite
-- Nodemon
 - Thunder Client (for API testing)
 - Git / GitHub
 
@@ -86,6 +85,26 @@ _(To be added once the UI is complete)_
 
 _To be completed (TBC)_
 
+<!-- 1. Clone the repo:
+   ```bash
+   git clone https://github.com/yourusername/vibeup.git
+   cd vibeup
+   ```
+
+2. Install dependencies:
+   ```bash
+   cd backend
+   npm install
+   cd ../frontend
+   npm install
+   ```
+
+3. Run development servers:
+   ```bash
+   # From root
+   npm run dev  # or use concurrently
+   ``` -->
+
 ---
 
 ## 📌 License
@@ -98,4 +117,4 @@ This project is for educational purposes and personal portfolio development.
 
 _To be completed (TBC)_
 
-<!-- [Ashley Lin](https://mywebsite.com) - fullstack developer with a strong front-end focus. -->
+<!-- [Ashley Lin](https://mywebsite.com) - fullstack developer with a strong front-end focus, based in NYC. -->
