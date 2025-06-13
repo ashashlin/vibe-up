@@ -59,6 +59,22 @@
   background-color: white;
 }
 
+.dropdown-container {
+  transform-origin: top;
+  animation: dropdownFadeIn 300ms ease forwards;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: scaleY(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
 .dropdown .dropdown-cities {
   display: grid;
   grid-template-columns: repeat(2, auto);

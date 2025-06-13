@@ -1,12 +1,8 @@
-// import { useState } from "react";
 import { Link } from "react-router-dom";
-// import usCities from "../../data/usCities";
 import NavGroup from "./NavGroup";
 import NavItem from "./NavItem";
 
 export default function NavBar() {
-  // const [open, setOpen] = useState(false);
-
   return (
     <nav className="nav">
       <Link to="/" className="home-link">
@@ -42,35 +38,10 @@ export default function NavBar() {
         </NavItem>
       </NavGroup>
 
-      {/* <ul className="explore-nav">
-        <li
-          className="nav-link dropdown"
-          onMouseEnter={() => setOpen(true)}
-          onMouseLeave={() => setOpen(false)}
-        >
-          Cities
-          {open && (
-            <ul className="dropdown-cities">
-              {usCities.map((city) => (
-                <li key={city.id} className="dropdown-city">
-                  {city.name}
-                </li>
-              ))}
-            </ul>
-          )}
-        </li>
-        <li className="nav-link dropdown">Vibes</li>
-      </ul> */}
-
       <NavGroup nav="user-nav">
-        <NavItem>Sign up</NavItem>
-        <NavItem>Login</NavItem>
+        <NavItem path="signup">Sign up</NavItem>
+        <NavItem path="login">Login</NavItem>
       </NavGroup>
-
-      {/* <ul className="user-nav">
-        <li className="nav-link">Sign up</li>
-        <li className="nav-link">Login</li>
-      </ul> */}
     </nav>
   );
 }
