@@ -1,6 +1,6 @@
-# VIBEUP 🌍
+# VIBEUP 🎡
 
-**VIBEUP** is a full-stack web application that helps users discover live events around the world tailored to their vibe or mood. Whether you're feeling adventurous, romantic, artsy, or introverted, VIBEUP filters and displays relevant events using real-time data from the Ticketmaster API.
+**VIBEUP** is a full-stack web application that helps users discover live events in the US tailored to their vibe or mood. Whether you're feeling adventurous, romantic, artsy, or introverted, VIBEUP filters and displays relevant events using real-time data from the Ticketmaster API.
 
 ---
 
@@ -23,7 +23,7 @@ Most event discovery platforms are based on categories or what's trending — no
 ## 🌟 Core Features
 
 - 🔍 **Mood-Based Filtering**: Users can select a "vibe" (e.g. energetic, introvert, artsy, etc.) to explore relevant events.
-- 🌆 **City Support**: Select a city from a list of global options.
+- 🌆 **City Support**: Select a city from a list of options in the US.
 - ❤️ **User Favorites**: Logged-in users can save and remove favorite events.
 - 🔐 **Authentication**: Sign up and log in to access personal dashboard using JWT tokens.
 - 🗺️ **(Stretch)** Map view to explore events by location.
