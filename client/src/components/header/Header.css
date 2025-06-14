@@ -9,9 +9,9 @@
 .home-link {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
   font-weight: 800;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 .nav ul {
@@ -52,13 +52,14 @@
 .dropdown-container {
   position: absolute;
   top: 3.7rem;
-  left: -5rem;
+  left: -2rem;
   padding: 1rem;
   font-weight: normal;
   border-radius: 1rem;
   background-color: white;
 }
 
+/* dropdown animations */
 .dropdown-container {
   transform-origin: top;
   animation: dropdownFadeIn 300ms ease forwards;
@@ -75,12 +76,22 @@
   }
 }
 
-.dropdown .dropdown-cities {
+.dropdown .dropdown-cities,
+.dropdown .dropdown-vibes {
+  padding: 0 1rem;
+  max-height: 70vh;
+  overflow-y: scroll;
+}
+
+.dropdown-cities,
+.dropdown-vibes {
   display: grid;
   grid-template-columns: repeat(2, auto);
   width: 32rem;
-  max-height: 70vh;
-  overflow-y: scroll;
+}
+
+.dropdown-vibes {
+  width: 20rem;
 }
 
 .dropdown-cities::-webkit-scrollbar {
@@ -98,17 +109,20 @@
   border: 2px solid #f0f0f0;
 }
 
-.dropdown-city {
+.dropdown-city,
+.dropdown-vibe {
   cursor: pointer;
   transition: background-color 100ms;
 }
 
-.dropdown-city:hover {
+.dropdown-city:hover,
+.dropdown-vibe:hover {
   background-color: #d9e8f7;
   border-radius: 5rem;
 }
 
-.dropdown-city a {
+.dropdown-city a,
+.dropdown-vibe a {
   display: inline-block;
   width: 100%;
   padding: 0.4rem 1rem;

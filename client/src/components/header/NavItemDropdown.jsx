@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import usCities from "../../data/usCities";
+import { vibes } from "../../data/vibes";
 
 export default function NavItemDropdown({
   children,
@@ -23,11 +24,15 @@ export default function NavItemDropdown({
           <ul className={dropdownMenu}>
             {children === "Cities"
               ? usCities.map((city) => (
-                  <div key={city.id} className={dropdownItem}>
+                  <li key={city.id} className={dropdownItem}>
                     <Link to={`/events/cities/${city.id}`}>{city.name}</Link>
-                  </div>
+                  </li>
                 ))
-              : "vibes-menu"}
+              : vibes.map((vibe) => (
+                  <li key={vibe.id} className={dropdownItem}>
+                    <Link to={`/events/vibes/${vibe.id}`}>{vibe.name}</Link>
+                  </li>
+                ))}
           </ul>
         </div>
       )}
