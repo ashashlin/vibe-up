@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import usCities from "../../data/usCities";
 import { vibes } from "../../data/vibes";
 
@@ -10,6 +10,11 @@ export default function NavItemDropdown({
   type,
 }) {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
 
   return (
     <li
