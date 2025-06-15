@@ -65,8 +65,21 @@ h6 {
 
 /* Custom Global CSS */
 body {
+  min-height: 100vh;
   font-family: "Roboto", "Arial", "sans-serif";
-  color: #4f3333;
+  color: #47201c;
+}
+
+body.home-bg {
+  background-image: url("./assets/home-bg.jpg");
+  background-size: contain;
+}
+
+@media (max-width: 77rem) {
+  body.home-bg {
+    background-image: none;
+    background: linear-gradient(to right, #cedbe5 50%, #e9d6d8);
+  }
 }
 
 a {

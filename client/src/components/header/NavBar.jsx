@@ -9,8 +9,8 @@ export default function NavBar() {
         <svg
           className="vibe-up-logo"
           xmlns="http://www.w3.org/2000/svg"
-          height="40"
-          width="40"
+          height="50"
+          width="50"
           viewBox="0 0 512 512"
         >
           <path
