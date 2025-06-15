@@ -1,8 +1,43 @@
-.events {
+.events-error,
+.events-section {
   padding: 2rem 3rem;
 }
 
 .events-hero h1 {
   font-size: 4rem;
   font-weight: 900;
+  margin-bottom: 3rem;
 }
+
+.vibe-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.vibe-filter {
+  background-color: transparent;
+  border: 2px solid #7a9e80;
+  border-radius: 2rem;
+  padding: 0.3rem 2rem;
+  font-weight: 500;
+  transition: background-color 150ms, color 150ms;
+}
+
+.vibe-filter:hover {
+  background-color: #7a9e80;
+  color: white;
+}
+
+/* .clear-filters {
+  background-color: transparent;
+  text-decoration: underline;
+  color: #e17c4d;
+  font-weight: 500;
+  transition: opacity 150ms;
+}
+
+.clear-filters:hover {
+  opacity: 0.8;
+} */

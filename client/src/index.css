@@ -82,7 +82,23 @@ body.home-bg {
   }
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
 a {
   text-decoration: none;
   color: inherit;
+}
+
+button {
+  border: none;
+  color: inherit;
+  cursor: pointer;
 }
