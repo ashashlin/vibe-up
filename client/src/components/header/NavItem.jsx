@@ -6,11 +6,16 @@ export default function NavItem({
   children,
   dropdownMenu,
   dropdownItem,
+  type,
   path,
 }) {
   if (dropdown) {
     return (
-      <NavItemDropdown dropdownMenu={dropdownMenu} dropdownItem={dropdownItem}>
+      <NavItemDropdown
+        dropdownMenu={dropdownMenu}
+        dropdownItem={dropdownItem}
+        type={type}
+      >
         {children}
       </NavItemDropdown>
     );

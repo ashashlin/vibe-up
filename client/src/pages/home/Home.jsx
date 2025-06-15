@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { useEventsContext } from "../../contexts/eventsContext";
 import chicagoVid from "../../assets/chicago-vid.mp4";
 import laVid from "../../assets/la-vid.mp4";
 import nycVid from "../../assets/nyc-vid.mp4";
 import sfVid from "../../assets/sf-vid.mp4";
 import "./Home.css";
-import Footer from "./Footer";
 
 export default function Home() {
+  const { setCities } = useEventsContext();
+
   useEffect(() => {
     document.body.classList.add("home-bg");
 
@@ -15,6 +17,10 @@ export default function Home() {
       document.body.classList.remove("home-bg");
     };
   }, []);
+
+  useEffect(() => {
+    setCities(null);
+  }, [setCities]);
 
   return (
     <section className="home">
@@ -54,8 +60,6 @@ export default function Home() {
           </p>
         </Link>
       </section>
-
-      <Footer />
     </section>
   );
 }

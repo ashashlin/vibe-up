@@ -7,6 +7,7 @@ export default function NavItemDropdown({
   children,
   dropdownMenu,
   dropdownItem,
+  type,
 }) {
   const [open, setOpen] = useState(false);
 
@@ -22,7 +23,7 @@ export default function NavItemDropdown({
       {open && (
         <div className="dropdown-container">
           <ul className={dropdownMenu}>
-            {children === "Cities"
+            {type === "cities"
               ? usCities.map((city) => (
                   <li key={city.id} className={dropdownItem}>
                     <Link to={`/events/cities/${city.id}`}>{city.name}</Link>

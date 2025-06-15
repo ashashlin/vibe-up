@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import NavGroup from "./NavGroup";
 import NavItem from "./NavItem";
+import { useEventsContext } from "../../contexts/eventsContext";
 
 export default function NavBar() {
+  const { cities } = useEventsContext();
+
   return (
     <nav className="nav">
       <Link to="/" className="home-link">
@@ -26,13 +29,15 @@ export default function NavBar() {
           dropdown="dropdown"
           dropdownMenu="dropdown-cities"
           dropdownItem="dropdown-city"
+          type="cities"
         >
-          Cities
+          {!cities ? "Cities" : cities}
         </NavItem>
         <NavItem
           dropdown="dropdown"
           dropdownMenu="dropdown-vibes"
           dropdownItem="dropdown-vibe"
+          type="vibes"
         >
           Vibes
         </NavItem>
