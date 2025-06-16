@@ -18,26 +18,18 @@
 
 .vibe-filter {
   background-color: transparent;
-  border: 2px solid #7a9e80;
+  border: 2px solid #7a9e80a1;
   border-radius: 2rem;
   padding: 0.3rem 2rem;
   font-weight: 500;
-  transition: background-color 150ms, color 150ms;
+  transition: background-color 100ms, color 100ms;
 }
 
 .vibe-filter:hover {
+  background-color: #e7faeb;
+}
+
+.vibe-filter.active {
   background-color: #7a9e80;
   color: white;
 }
-
-/* .clear-filters {
-  background-color: transparent;
-  text-decoration: underline;
-  color: #e17c4d;
-  font-weight: 500;
-  transition: opacity 150ms;
-}
-
-.clear-filters:hover {
-  opacity: 0.8;
-} */

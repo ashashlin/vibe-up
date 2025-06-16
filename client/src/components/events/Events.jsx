@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useEventsContext } from "../../contexts/eventsContext";
 import usCities from "../../data/usCities";
 import { vibes } from "../../data/vibes";
 import "./Events.css";
+import useVibeFilters from "../../hooks/useVibeFilters";
 
 export default function Events() {
   const { setCities } = useEventsContext();
@@ -16,6 +17,8 @@ export default function Events() {
       setCities(`📍 ${city.name}`);
     }
   }, [city, setCities]);
+
+  const { vibeFilters, handleVibeChange } = useVibeFilters(cityId);
 
   if (!city)
     return (
@@ -36,11 +39,16 @@ export default function Events() {
       <section className="events-main">
         <div className="vibe-filters">
           {vibes.map((vibe) => (
-            <button key={vibe.id} className="vibe-filter">
+            <button
+              key={vibe.id}
+              className={`vibe-filter ${
+                vibeFilters.includes(vibe.name.toLowerCase()) ? "active" : ""
+              }`}
+              onClick={() => handleVibeChange(vibe)}
+            >
               {vibe.name}
             </button>
           ))}
-          {/* <button className="clear-filters">Clear filters</button> */}
         </div>
       </section>
     </section>
