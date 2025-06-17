@@ -3,10 +3,13 @@
   padding: 2rem 3rem;
 }
 
+.events-hero {
+  margin-bottom: 3rem;
+}
+
 .events-hero h1 {
   font-size: 4rem;
   font-weight: 900;
-  margin-bottom: 3rem;
 }
 
 .vibe-filters {
@@ -14,6 +17,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+  margin-bottom: 3rem;
 }
 
 .vibe-filter {

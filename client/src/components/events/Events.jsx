@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import { useEventsContext } from "../../contexts/eventsContext";
 import usCities from "../../data/usCities";
 import { vibes } from "../../data/vibes";
-import "./Events.css";
 import useVibeFilters from "../../hooks/useVibeFilters";
+import "./Events.css";
 
 export default function Events() {
   const { setCities } = useEventsContext();
@@ -19,6 +20,22 @@ export default function Events() {
   }, [city, setCities]);
 
   const { vibeFilters, handleVibeChange } = useVibeFilters(cityId);
+
+  useEffect(() => {
+    if (!vibeFilters.length || vibeFilters.includes("")) return;
+
+    const getEvents = async () => {
+      const res = await axios.get("/api/events", {
+        params: {
+          cityId,
+          vibe: vibeFilters.join(","),
+        },
+      });
+      console.log(res.data);
+    };
+
+    getEvents();
+  }, [cityId, vibeFilters]);
 
   if (!city)
     return (
@@ -50,6 +67,10 @@ export default function Events() {
             </button>
           ))}
         </div>
+
+        <section className="events">
+          <div className="feature-event"></div>
+        </section>
       </section>
     </section>
   );

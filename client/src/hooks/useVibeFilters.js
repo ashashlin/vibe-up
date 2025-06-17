@@ -42,6 +42,12 @@ export default function useVibeFilters(cityId) {
 
   // Take setSearchParams out of the dependency array bc react may return a new func reference for it on each render
   useEffect(() => {
+    // const vibes = searchParams.getAll("vibe");
+    // if (vibes.length === 0) {
+    //   const sp = new URLSearchParams(searchParams);
+    //   sp.set("vibe", "all vibes");
+    //   setSearchParams(sp);
+    // }
     if (!searchParams.has("vibe")) {
       setSearchParams({
         vibe: "all vibes",

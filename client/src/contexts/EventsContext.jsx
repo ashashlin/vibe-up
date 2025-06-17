@@ -19,7 +19,7 @@ export function useEventsContext() {
   const value = useContext(EventsContext);
 
   if (!value)
-    throw Error("useEventsContext must be used within a EventsContextProvider");
+    throw Error("useEventsContext must be used within an EventsProvider");
 
   return value;
 }
