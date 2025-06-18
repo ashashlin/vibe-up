@@ -10,7 +10,7 @@ eventsRouter.get("/", async (req, res, next) => {
   const apiKey = process.env.API_KEY;
 
   try {
-    const { cityId, vibe } = req.query;
+    const { cityId, vibe, page } = req.query;
     const vibeFilters = vibe.split(",");
 
     // Get data of all events for each city
@@ -18,12 +18,12 @@ eventsRouter.get("/", async (req, res, next) => {
       params: {
         apikey: apiKey,
         marketId: cityId,
+        page,
       },
     });
     const data = response.data;
 
     // Organize events classfications based on user's selected vibes into an array
-    const filteredVibeMappings = [];
     let filteredClassifications = [];
 
     if (vibe !== "all vibes") {
@@ -50,15 +50,15 @@ eventsRouter.get("/", async (req, res, next) => {
     }
 
     // Save dataset info
-    const firstDataset = data._links?.first?.href;
-    const prevDataset = data._links?.prev?.href;
-    const selfDataset = data._links?.self?.href;
+    // const firstDataset = data._links?.first?.href;
+    // const prevDataset = data._links?.prev?.href;
+    // const selfDataset = data._links?.self?.href;
     let nextDataset = data._links?.next?.href;
-    const lastDataset = data._links?.last?.href;
-    const pageSize = data.page?.size;
-    const totalElements = data.page?.totalElements;
-    const totalPages = data.page?.totalPages;
-    const currentPage = data.page?.number;
+    // const lastDataset = data._links?.last?.href;
+    // const pageSize = data.page?.size;
+    // const totalElements = data.page?.totalElements;
+    // const totalPages = data.page?.totalPages;
+    // const currentPage = data.page?.number;
 
     // Filter events from data based on user's selected vibes, make each page contain at least 20 events
     let filteredEvents = [];
@@ -80,8 +80,15 @@ eventsRouter.get("/", async (req, res, next) => {
         );
       });
 
-      // If there is a next dataset, get the next dataset and filter again, and so on, until we get to the last dataset. We get all filtered events first, and do the 20 events per page pagination later
-      while (nextDataset) {
+      // If there is a next dataset, get the next dataset and filter, until we get at least 20 filtered events
+      let loopCount = 0;
+      const maxLoops = 5;
+
+      while (
+        nextDataset &&
+        filteredEvents.length < 100 &&
+        loopCount < maxLoops
+      ) {
         const reqUrl = `${url}${nextDataset}&apikey=${apiKey}`;
         console.log(reqUrl);
 
@@ -107,11 +114,12 @@ eventsRouter.get("/", async (req, res, next) => {
         filteredEvents.push(...moreFilteredEvents);
 
         nextDataset = currentData._links?.next?.href;
-        if (!nextDataset) break;
+
+        loopCount++;
       }
     }
 
-    if (vibe !== "all vibes") return res.json({ filteredEvents });
+    if (vibe !== "all vibes") return res.json({ data: filteredEvents });
 
     res.json({ data });
   } catch (error) {

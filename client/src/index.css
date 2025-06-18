@@ -68,6 +68,7 @@ body {
   min-height: 100vh;
   font-family: "Roboto", "Arial", "sans-serif";
   color: #47201c;
+  background-color: #fef5dc;
 }
 
 body.home-bg {

@@ -281,7 +281,6 @@ export const vibeMappings = {
     "Science Fiction",
     "Zoo",
     "Fine Art",
-    "Sports",
     "Fairs & Festivals",
     "Holiday",
     "Food & Drink",
