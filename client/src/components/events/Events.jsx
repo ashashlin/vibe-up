@@ -14,16 +14,14 @@ import useVibeFilters from "../../hooks/useVibeFilters";
 import "./Events.css";
 
 export default function Events() {
-  const { setCities } = useEventsContext();
+  const { setCities, events, setEvents } = useEventsContext();
   const { id } = useParams();
   const cityId = Number(id);
   const city = usCities.find((city) => city.id === cityId);
 
-  const [events, setEvents] = useState(null);
-  console.log(events);
   const featureEvent = events?.[0];
   const eventsArray = events ? events.slice(1) : [];
-  const [queryParams, setQueryParams] = useSearchParams();
+  const [queryParams] = useSearchParams();
   const [page, setPage] = useState(0);
   const [lastPage, setLastPage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -36,13 +34,24 @@ export default function Events() {
     }
   }, [city, setCities]);
 
-  const { vibeFilters, handleVibeChange } = useVibeFilters(cityId);
+  const { vibeFilters, handleVibeChange, searchParams, setSearchParams } =
+    useVibeFilters(cityId);
   const vibeFiltersString = vibeFilters.join(",");
 
   // Need to use a string instead of an object in the dependency array bc React compares objects by reference so it will be diff every render, causing infinite loops for useEffects
   useEffect(() => {
-    setPage(0);
+    localStorage.setItem("vibeFiltersString", vibeFiltersString);
   }, [vibeFiltersString]);
+
+  useEffect(() => {
+    setPage(0);
+
+    if (searchParams.has("page")) {
+      const updatedParams = new URLSearchParams(searchParams);
+      updatedParams.delete("page");
+      setSearchParams(updatedParams);
+    }
+  }, [cityId, vibeFiltersString]);
 
   useEffect(() => {
     const pageParam = Number(queryParams.get("page"));
@@ -138,7 +147,7 @@ export default function Events() {
       )}
 
       {!loading && events?.length > 0 && (
-        <section className="events-main">
+        <section className="events-container">
           <div className="vibe-filters">
             {vibes.map((vibe) => (
               <button
@@ -164,7 +173,7 @@ export default function Events() {
                       ?.url ||
                     featureEvent?.images?.find((img) => img.width > 600)?.url ||
                     featureEvent?.images?.[0]?.url ||
-                    ""
+                    null
                   }
                   alt={`${featureEvent?.name} image`}
                   className="event-img"
@@ -208,7 +217,7 @@ export default function Events() {
                         event?.images?.find((img) => img.width > 1000)?.url ||
                         event?.images?.find((img) => img.width > 600)?.url ||
                         event?.images?.[0]?.url ||
-                        ""
+                        null
                       }
                       alt={`${event?.name} image`}
                       className="event-img"

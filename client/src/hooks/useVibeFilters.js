@@ -55,5 +55,5 @@ export default function useVibeFilters(cityId) {
     }
   }, [cityId]);
 
-  return { vibeFilters, handleVibeChange };
+  return { vibeFilters, handleVibeChange, searchParams, setSearchParams };
 }

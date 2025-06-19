@@ -5,10 +5,9 @@ import { vibeMappings } from "../../../client/src/data/vibes.js";
 const eventsRouter = express.Router();
 
 const url = "https://app.ticketmaster.com";
+const apiKey = process.env.API_KEY;
 
 eventsRouter.get("/", async (req, res, next) => {
-  const apiKey = process.env.API_KEY;
-
   try {
     const { cityId, vibe, page } = req.query;
     const vibeFilters = vibe.split(",");
@@ -120,6 +119,22 @@ eventsRouter.get("/", async (req, res, next) => {
     }
 
     if (vibe !== "all vibes") return res.json({ data: filteredEvents });
+
+    res.json({ data });
+  } catch (error) {
+    next(error);
+  }
+});
+
+eventsRouter.get("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const response = await axios.get(`${url}/discovery/v2/events/${id}`, {
+      params: {
+        apikey: apiKey,
+      },
+    });
+    const data = response.data;
 
     res.json({ data });
   } catch (error) {

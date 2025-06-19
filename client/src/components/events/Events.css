@@ -19,6 +19,24 @@
 .events-hero h1 {
   font-size: 4rem;
   font-weight: 900;
+  animation: popIn 1000ms ease-out forwards;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(-5deg) translateY(40px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05) rotate(2deg) translateY(-10px);
+  }
+  80% {
+    transform: scale(0.98) rotate(-2deg) translateY(5px);
+  }
+  100% {
+    transform: scale(1) rotate(0deg) translateY(0);
+  }
 }
 
 .vibe-filters {
@@ -106,9 +124,11 @@
   gap: 1rem;
 }
 
-.event-date,
-.event-time-info-separator {
-  margin-right: 1rem;
+.event-time-info {
+  display: flex;
+  align-items: center;
+  gap: 0 1rem;
+  flex-wrap: wrap;
 }
 
 .feature-event .event-name {
@@ -119,7 +139,8 @@
   font-size: 1.5rem;
 }
 
-.events {
+.events,
+.similar-events {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
@@ -137,7 +158,6 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  /* font-size: 1.5rem; */
 }
 
 .pagination .btn,
