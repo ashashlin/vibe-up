@@ -137,17 +137,6 @@ export default function Events() {
         </h1>
       </section>
 
-      {/* {loading && <p className="events-msg">Loading events...</p>}
-
-      {!loading && events?.length === 0 && (
-        <p className="events-msg">
-          No matching events found.{" "}
-          <button className="btn go-back-btn" onClick={() => navigate(-1)}>
-            Go Back
-          </button>
-        </p>
-      )} */}
-
       <section className="events-container">
         <div className="vibe-filters">
           {vibes.map((vibe) => (

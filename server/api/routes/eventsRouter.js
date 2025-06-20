@@ -49,15 +49,7 @@ eventsRouter.get("/", async (req, res, next) => {
     }
 
     // Save dataset info
-    // const firstDataset = data._links?.first?.href;
-    // const prevDataset = data._links?.prev?.href;
-    // const selfDataset = data._links?.self?.href;
     let nextDataset = data._links?.next?.href;
-    // const lastDataset = data._links?.last?.href;
-    // const pageSize = data.page?.size;
-    // const totalElements = data.page?.totalElements;
-    // const totalPages = data.page?.totalPages;
-    // const currentPage = data.page?.number;
 
     // Filter events from data based on user's selected vibes, make each page contain at least 20 events
     let filteredEvents = [];
@@ -79,7 +71,7 @@ eventsRouter.get("/", async (req, res, next) => {
         );
       });
 
-      // If there is a next dataset, get the next dataset and filter, until we get at least 20 filtered events
+      // If there is a next dataset, get the next dataset and filter. We are doing 5 loops max here bc it would take too long to filter through every page of events from the api
       let loopCount = 0;
       const maxLoops = 5;
 
@@ -89,7 +81,6 @@ eventsRouter.get("/", async (req, res, next) => {
         loopCount < maxLoops
       ) {
         const reqUrl = `${url}${nextDataset}&apikey=${apiKey}`;
-        console.log(reqUrl);
 
         const currentResponse = await axios.get(reqUrl);
         const currentData = currentResponse.data;
