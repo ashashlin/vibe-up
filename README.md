@@ -101,7 +101,16 @@ _To be completed (TBC)_
    npm install
    ```
 
-3. Run development servers:
+3. Create a `.env` file in the `server` directory based on `.env.example`:
+
+   ```bash
+   cd server
+   cp .env.example .env
+   ```
+
+   Then, edit the `.env` file to add your own API keys and secrets (e.g., Ticketmaster API key, JWT secret, database URL). You can obtain a free Ticketmaster API key by signing up at [https://developer.ticketmaster.com/products-and-docs/apis/getting-started/](https://developer.ticketmaster.com/products-and-docs/apis/getting-started/).
+
+4. Run development servers:
    Start the backend:
 
    ```bash
