@@ -5,6 +5,7 @@ import Events from "./components/events/Events";
 import EventDetails from "./components/eventDetails/EventDetails";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/sign-up/SignUp";
+import Dashboard from "./pages/dashboard/Dashboard";
 import "./App.css";
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="events/cities/:id/:eventId" element={<EventDetails />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<Login />} />
+        <Route path="dashboard" element={<Dashboard />} />
       </Route>
     </Routes>
   );

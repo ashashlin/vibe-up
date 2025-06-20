@@ -20,12 +20,12 @@ export default function Login() {
       <form action="" className="login-form">
         <label htmlFor="email">
           <p>Email</p>
-          <input type="email" name="email" id="email" />
+          <input type="email" name="email" id="email" required />
         </label>
 
         <label htmlFor="password">
           <p>Password</p>
-          <input type="password" name="password" id="password" />
+          <input type="password" name="password" id="password" required />
         </label>
 
         <button className="login-btn btn">Login</button>

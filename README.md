@@ -22,13 +22,13 @@ Most event discovery platforms are based on categories or what's trending — no
 
 ## 🌟 Core Features
 
-- 🔍 **Mood-Based Filtering**: Users can select a "vibe" (e.g. energetic, introvert, artsy, etc.) to explore relevant events.
 - 🌆 **City Support**: Select a city from a list of options in the US.
-- ❤️ **User Favorites**: Logged-in users can save and remove favorite events.
+- 🔍 **Mood-Based Filtering**: Users can select one or more "vibes" (e.g. energetic, introvert, artsy, etc.) to explore relevant events.
 - 🔐 **Authentication**: Sign up and log in to access personal dashboard using JWT tokens.
-- 🗺️ **(Stretch)** Map view to explore events by location.
-- ✍️ **(Stretch)** Leave event ratings, reviews and reply to others.
-- 🗂️ **User History**: Logged-in users can view their previously attended events in their dashboard.
+- ❤️ **User Favorites**: Logged-in users can save and remove favorite events.
+- 🗺️ **Map View(Stretch)** Map view to explore events by location.
+- ✍️ **User Reviews(Stretch)** Leave event ratings, reviews and reply to others.
+- 🗂️ **User History(Stretch)**: Logged-in users can view their previously attended events in their dashboard.
 
 ---
 
@@ -38,7 +38,7 @@ Most event discovery platforms are based on categories or what's trending — no
 
 - React (Vite)
 - JavaScript
-- Vanilla CSS with custom styling
+- Vanilla CSS
 - React Router
 
 ### Backend:
@@ -67,9 +67,9 @@ _To be completed (TBC)_
 
 ### System Flow
 
-1. User selects a mood and city from the frontend.
-2. Frontend sends request to backend (`/api/events?city=...&vibe=...`).
-3. Backend maps mood to classification types and calls Ticketmaster API.
+1. User selects a city from the frontend.
+2. Frontend sends request to backend (`/api/events?city=...&vibe=...`). Default vibe is all vibes.
+3. Backend calls Ticketmaster API, maps selected vibe(s) to classification types, and filters events based on those types.
 4. Results are returned to frontend and displayed in a dynamic UI.
 5. Logged-in users can save events via `/api/favorites` endpoints.
 
@@ -85,25 +85,36 @@ _(To be added once the UI is complete)_
 
 _To be completed (TBC)_
 
-<!-- 1. Clone the repo:
+1. Clone the repo:
+
    ```bash
-   git clone https://github.com/yourusername/vibeup.git
-   cd vibeup
+   git clone https://github.com/ashashlin/vibe-up.git
+   cd vibe-up
    ```
 
 2. Install dependencies:
+
    ```bash
-   cd backend
+   cd server
    npm install
-   cd ../frontend
+   cd ../client
    npm install
    ```
 
 3. Run development servers:
+   Start the backend:
+
    ```bash
-   # From root
-   npm run dev  # or use concurrently
-   ``` -->
+   cd server
+   npm run dev
+   ```
+
+   Start the frontend (in a separate terminal):
+
+   ```bash
+   cd client
+   npm run dev
+   ```
 
 ---
 
@@ -115,6 +126,6 @@ This project is for educational purposes and personal portfolio development.
 
 ## 🙋‍♀️ Author
 
-_To be completed (TBC)_
+<!-- _To be updated (TBU)_ -->
 
-<!-- [Ashley Lin](https://mywebsite.com) - fullstack developer with a strong front-end focus, based in NYC. -->
+Ashley Lin - fullstack developer with a strong front-end focus.

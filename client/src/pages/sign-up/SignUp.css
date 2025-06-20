@@ -17,8 +17,9 @@
 .sign-up {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   width: 60%;
+  max-width: 53rem;
   color: #dcf6fa;
   padding: 10rem 3rem;
 }
@@ -52,7 +53,8 @@
 .sign-up-btn {
   display: block;
   padding: 0.7rem 1rem;
-  width: 15rem;
+  width: 100%;
+  max-width: 16rem;
   color: #47201c;
   background-color: #b5c6cc;
   border-radius: 2rem;
@@ -66,5 +68,11 @@
 }
 
 .have-account-link {
+  text-align: center;
+}
+
+.sign-up .error-msg {
+  padding: 0;
+  margin-top: 2rem;
   text-align: center;
 }

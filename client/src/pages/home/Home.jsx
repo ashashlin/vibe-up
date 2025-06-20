@@ -13,6 +13,8 @@ export default function Home() {
   useEffect(() => {
     document.body.classList.add("home-bg");
 
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
     return () => {
       document.body.classList.remove("home-bg");
     };
