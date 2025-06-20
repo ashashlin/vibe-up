@@ -1,0 +1,61 @@
+.home-link.logo-color .vibe-up-logo path {
+  fill: aliceblue;
+}
+
+.home-link.logo-color span {
+  color: aliceblue;
+}
+
+.login-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../assets/login-bg.jpg);
+  background-size: cover;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #dcf6fa;
+  padding: 7rem 3rem;
+  width: 100%;
+  max-width: 27rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-form label p {
+  margin-bottom: 0.3rem;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.login-btn {
+  padding: 0.7rem 1rem;
+  color: #47201c;
+  background-color: #b5c6cc;
+  border-radius: 2rem;
+  margin-top: 0.5rem;
+  transition: background-color 150ms, color 150ms;
+}
+
+.login-btn:hover {
+  background-color: #0b2a37;
+  color: #b5c6cc;
+}
+
+.no-account-link {
+  text-align: center;
+}

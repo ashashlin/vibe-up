@@ -1,0 +1,70 @@
+.home-link.logo-color .vibe-up-logo path {
+  fill: aliceblue;
+}
+
+.home-link.logo-color span {
+  color: aliceblue;
+}
+
+.sign-up-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../assets/sign-up-bg.jpg);
+  background-size: cover;
+}
+
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 60%;
+  color: #dcf6fa;
+  padding: 10rem 3rem;
+}
+
+.sign-up-form-main {
+  display: flex;
+  gap: 7rem;
+  margin-bottom: 3rem;
+}
+
+.email-password,
+.names {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 50%;
+}
+
+.sign-up input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.sign-up-form label p {
+  margin-bottom: 0.3rem;
+}
+
+.sign-up-btn {
+  display: block;
+  padding: 0.7rem 1rem;
+  width: 15rem;
+  color: #47201c;
+  background-color: #b5c6cc;
+  border-radius: 2rem;
+  margin: 0 auto;
+  transition: background-color 150ms, color 150ms;
+}
+
+.sign-up-btn:hover {
+  background-color: #0b2a37;
+  color: #b5c6cc;
+}
+
+.have-account-link {
+  text-align: center;
+}

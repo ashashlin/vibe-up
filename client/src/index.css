@@ -78,8 +78,8 @@ body.home-bg {
 
 @media (max-width: 77rem) {
   body.home-bg {
-    background-image: none;
-    background: linear-gradient(to right, #cedbe5 50%, #e9d6d8);
+    background-size: cover;
+    background-position: 55%;
   }
 }
 

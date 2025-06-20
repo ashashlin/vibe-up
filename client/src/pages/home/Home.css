@@ -11,9 +11,10 @@ main {
 
 .home-hero h1 {
   text-transform: uppercase;
-  font-family: "Zeyada";
+  font-family: "Zeyada", "Roboto", "Arial";
   font-weight: 900;
   font-size: 7rem;
+  color: aliceblue;
   margin-left: 2rem;
   animation: fadeInDown 800ms cubic-bezier(0.22, -0.75, 0.35, 1.67);
 }
@@ -25,13 +26,14 @@ main {
   width: 60vw;
   padding: 3rem 2rem;
   border-radius: 2rem;
-  background-color: #fff7fa68;
+  background-color: rgba(255, 245, 249, 0.13);
   font-weight: 600;
   font-size: 1.8rem;
-  color: #72283b;
+  color: #fff4f6;
   margin-top: -1rem;
   margin-bottom: 4rem;
-  animation: fadeIn 1200ms cubic-bezier(0.01, 0.55, 0.95, 0.41);
+  animation: fadeIn 1200ms cubic-bezier(0.01, 0.55, 0.95, 0.41),
+    rotate 1000ms ease infinite alternate;
 }
 
 .home-hero-text::after {
@@ -44,11 +46,7 @@ main {
   height: 0;
   border-left: 3rem solid transparent;
   border-right: 3rem solid transparent;
-  border-top: 3rem solid #fff7fa68;
-}
-
-.home-hero-text:hover {
-  animation: rotate 1000ms ease infinite alternate;
+  border-top: 3rem solid rgba(255, 245, 249, 0.13);
 }
 
 @keyframes fadeInDown {

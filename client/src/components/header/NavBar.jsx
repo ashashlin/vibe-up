@@ -29,17 +29,8 @@ export default function NavBar() {
           dropdown="dropdown"
           dropdownMenu="dropdown-cities"
           dropdownItem="dropdown-city"
-          type="cities"
         >
           {!cities ? "Cities" : cities}
-        </NavItem>
-        <NavItem
-          dropdown="dropdown"
-          dropdownMenu="dropdown-vibes"
-          dropdownItem="dropdown-vibe"
-          type="vibes"
-        >
-          Vibes
         </NavItem>
       </NavGroup>
 

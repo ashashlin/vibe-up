@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import usCities from "../../data/usCities";
-import { vibes } from "../../data/vibes";
 
 export default function NavItemDropdown({
   children,
   dropdownMenu,
   dropdownItem,
-  type,
 }) {
   const [open, setOpen] = useState(false);
   // When setSearchParams() gets called when the user selects a vibe, setSearchParams() updates the URL’s query string (like ?vibe=adventurous&vibe=cozy). This triggers a navigation event in React Router. React Router re-renders any components that: use useSearchParams(), use useLocation(), use useParams(), or are directly routed in <Routes></Routes>
@@ -29,20 +27,14 @@ export default function NavItemDropdown({
       {open && (
         <div className="dropdown-container">
           <ul className={dropdownMenu}>
-            {type === "cities"
-              ? usCities.map((city) => (
-                  <li key={city.id} className={dropdownItem}>
-                    {/* Preserve the query params when user navigates to another city */}
-                    <Link to={`/events/cities/${city.id}/${location.search}`}>
-                      {city.name}
-                    </Link>
-                  </li>
-                ))
-              : vibes.map((vibe) => (
-                  <li key={vibe.id} className={dropdownItem}>
-                    <Link to={`/events/vibes/${vibe.id}`}>{vibe.name}</Link>
-                  </li>
-                ))}
+            {usCities.map((city) => (
+              <li key={city.id} className={dropdownItem}>
+                {/* Preserve the query params when user navigates to another city */}
+                <Link to={`/events/cities/${city.id}/${location.search}`}>
+                  {city.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       )}

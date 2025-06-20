@@ -115,6 +115,8 @@ export default function Events() {
     };
 
     getEvents();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [cityId, vibeFiltersString, page]);
 
   if (!city)
@@ -135,7 +137,7 @@ export default function Events() {
         </h1>
       </section>
 
-      {loading && <p className="events-msg">Loading events...</p>}
+      {/* {loading && <p className="events-msg">Loading events...</p>}
 
       {!loading && events?.length === 0 && (
         <p className="events-msg">
@@ -144,26 +146,37 @@ export default function Events() {
             Go Back
           </button>
         </p>
-      )}
+      )} */}
 
-      {!loading && events?.length > 0 && (
-        <section className="events-container">
-          <div className="vibe-filters">
-            {vibes.map((vibe) => (
-              <button
-                key={vibe.id}
-                className={`vibe-filter ${
-                  vibeFilters.includes(vibe.name.toLowerCase()) ? "active" : ""
-                }`}
-                onClick={() => {
-                  handleVibeChange(vibe);
-                }}
-              >
-                {vibe.name}
-              </button>
-            ))}
-          </div>
+      <section className="events-container">
+        <div className="vibe-filters">
+          {vibes.map((vibe) => (
+            <button
+              key={vibe.id}
+              className={`vibe-filter ${
+                vibeFilters.includes(vibe.name.toLowerCase()) ? "active" : ""
+              }`}
+              onClick={() => {
+                handleVibeChange(vibe);
+              }}
+            >
+              {vibe.name}
+            </button>
+          ))}
+        </div>
 
+        {loading && <p className="events-msg">Loading events...</p>}
+
+        {!loading && events?.length === 0 && (
+          <p className="events-msg">
+            No matching events found.{" "}
+            <button className="btn go-back-btn" onClick={() => navigate(-1)}>
+              Go Back
+            </button>
+          </p>
+        )}
+
+        {!loading && events?.length > 0 && (
           <section className="all-events">
             <Link to={events?.[0]?.id} className="feature-event">
               <div className="event-img-container">
@@ -272,8 +285,8 @@ export default function Events() {
               </div>
             )}
           </section>
-        </section>
-      )}
+        )}
+      </section>
     </section>
   );
 }

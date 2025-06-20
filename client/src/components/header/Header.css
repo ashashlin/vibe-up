@@ -5,16 +5,11 @@
   z-index: 1000;
 }
 
-/* .main-footer {
-  background-color: #4f3333;
-} */
-
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 3rem;
-  /* background-color: aliceblue; */
 }
 
 .home-link {
@@ -59,11 +54,23 @@
   height: 1rem; /* the hover bridge space */
 }
 
+.user-nav .nav-link {
+  padding: 0;
+}
+
+.user-nav a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+  height: 2.75rem;
+}
+
 /* Need this to wrap the dropdown menu so the vertical paddings stay when we scroll */
 .dropdown-container {
   position: absolute;
   top: 3.7rem;
-  left: -2rem;
+  left: -8rem;
   padding: 1rem;
   font-weight: normal;
   border-radius: 1rem;
@@ -87,22 +94,16 @@
   }
 }
 
-.dropdown .dropdown-cities,
-.dropdown .dropdown-vibes {
+.dropdown .dropdown-cities {
   padding: 0 1rem;
   max-height: 70vh;
   overflow-y: scroll;
 }
 
-.dropdown-cities,
-.dropdown-vibes {
+.dropdown-cities {
   display: grid;
   grid-template-columns: repeat(2, auto);
   width: 33rem;
-}
-
-.dropdown-vibes {
-  width: 20rem;
 }
 
 .dropdown-cities::-webkit-scrollbar {
@@ -115,25 +116,22 @@
 }
 
 .dropdown-cities::-webkit-scrollbar-thumb {
-  background-color: #d5deea;
+  background-color: #ede6d0;
   border-radius: 4px;
   border: 2px solid #f0f0f0;
 }
 
-.dropdown-city,
-.dropdown-vibe {
+.dropdown-city {
   cursor: pointer;
   transition: background-color 100ms;
 }
 
-.dropdown-city:hover,
-.dropdown-vibe:hover {
+.dropdown-city:hover {
   background-color: #d9e8f7;
   border-radius: 5rem;
 }
 
-.dropdown-city a,
-.dropdown-vibe a {
+.dropdown-city a {
   display: inline-block;
   width: 100%;
   padding: 0.4rem 1rem;
