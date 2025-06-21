@@ -26,11 +26,8 @@ CREATE TABLE events(
   name VARCHAR(255) NOT NULL,
   url VARCHAR(255) NOT NULL,
   image VARCHAR(255),
-  start_date_time
-    TIMESTAMP WITH TIME ZONE
-    NOT NULL,
-  end_date_time
-    TIMESTAMP WITH TIME ZONE
+  start_local_date DATE NOT NULL,
+  start_local_time TIME NOT NULL
 );
 
 CREATE TABLE venues (

@@ -10,7 +10,7 @@ export default function NavItem({
   type,
   path,
 }) {
-  const { setAccessToken } = useEventsContext();
+  const { setAccessToken, setUser } = useEventsContext();
 
   if (dropdown) {
     return (
@@ -23,6 +23,8 @@ export default function NavItem({
   function handleLogOut(type) {
     if (type !== "logout") return;
 
+    setUser(null);
+    localStorage.removeItem("user");
     setAccessToken(null);
     localStorage.removeItem("accessToken");
   }

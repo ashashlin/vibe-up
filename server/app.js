@@ -1,6 +1,7 @@
 import express from "express";
 import eventsRouter from "./api/routes/eventsRouter.js";
 import usersRouter from "./api/routes/usersRouter.js";
+import favoritesRouter from "./api/routes/favoritesRouter.js";
 
 const app = express();
 
@@ -8,6 +9,7 @@ app.use(express.json());
 
 app.use("/api/events", eventsRouter);
 app.use("/api/users", usersRouter);
+app.use("/api/favorites", favoritesRouter);
 
 app.use((err, req, res, next) => {
   switch (err.code) {

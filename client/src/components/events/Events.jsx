@@ -14,7 +14,8 @@ import useVibeFilters from "../../hooks/useVibeFilters";
 import "./Events.css";
 
 export default function Events() {
-  const { setCities, events, setEvents } = useEventsContext();
+  const { setCities, events, setEvents, user, accessToken } =
+    useEventsContext();
   const { id } = useParams();
   const cityId = Number(id);
   const city = usCities.find((city) => city.id === cityId);
@@ -27,6 +28,8 @@ export default function Events() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  const [favoriteEvents, setFavoriteEvents] = useState([]);
 
   useEffect(() => {
     if (city) {
@@ -119,6 +122,55 @@ export default function Events() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [cityId, vibeFiltersString, page]);
 
+  const getFavorites = async () => {
+    try {
+      const res = await axios.get("/api/favorites", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      const favorites = res.data.favorites;
+      setFavoriteEvents(favorites);
+    } catch (error) {
+      console.error(error);
+      setError(error.response?.data || "Something went wrong.");
+    }
+  };
+
+  useEffect(() => {
+    if (!user) return;
+
+    getFavorites();
+  }, []);
+
+  function checkIfFavorited(event) {
+    const eventId = event.id;
+
+    return favoriteEvents.some((favEvent) => favEvent.event_id === eventId);
+  }
+
+  async function handleFavoriteEvent(event) {
+    if (!user) return navigate("/login");
+
+    try {
+      await axios.post(
+        "/api/favorites",
+        {
+          event,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      await getFavorites();
+    } catch (error) {
+      console.error(error);
+      setError(error.response?.data || "Something went wrong.");
+    }
+  }
+
   if (!city)
     return (
       <section className="events-error">
@@ -181,6 +233,31 @@ export default function Events() {
                   className="event-img"
                 />
                 <div className="view-event-overlay">View event</div>
+                <button
+                  className="favorite-btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleFavoriteEvent(events?.[0]);
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill={checkIfFavorited(events?.[0]) ? "#f97289" : "none"}
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke={
+                      checkIfFavorited(events?.[0]) ? "#f97289" : "#ffffff"
+                    }
+                    className="size-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                    />
+                  </svg>
+                </button>
               </div>
 
               <div className="event-info">
@@ -225,6 +302,29 @@ export default function Events() {
                       className="event-img"
                     />
                     <div className="view-event-overlay">View event</div>
+                    <button
+                      className="favorite-btn"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleFavoriteEvent(event);
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill={checkIfFavorited(event) ? "#f97289" : "none"}
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke={checkIfFavorited(event) ? "#f97289" : "#ffffff"}
+                        className="size-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                        />
+                      </svg>
+                    </button>
                   </div>
 
                   <div className="event-info">

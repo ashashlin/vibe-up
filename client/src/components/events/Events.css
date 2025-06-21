@@ -179,3 +179,22 @@
 .go-back-btn:hover {
   background-color: #d9e8f7;
 }
+
+.favorite-btn {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.5rem;
+  padding: 0;
+  background-color: transparent;
+}
+
+.favorite-btn svg {
+  width: 2rem;
+  stroke-width: 2px;
+  transition: fill 150ms, stroke 150ms;
+}
+
+.favorite-btn:hover svg {
+  fill: #f97289;
+  stroke: #f97289;
+}

@@ -1,13 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useEventsContext } from "../../contexts/eventsContext";
 import "./Dashboard.css";
 
 export default function Dashboard() {
-  const { accessToken, setCities } = useEventsContext();
+  const { accessToken, setCities, user, setUser } = useEventsContext();
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -35,6 +34,7 @@ export default function Dashboard() {
         const user = res.data.user;
         console.log(user);
         setUser(user);
+        localStorage.setItem("user", user);
       } catch (error) {
         console.error(error);
         setError(
@@ -49,5 +49,21 @@ export default function Dashboard() {
 
   if (error) return <p className="error-msg">{error}</p>;
 
-  return user && <div>Dashboard</div>;
+  return (
+    user && (
+      <section className="dashboard">
+        <section className="dashboard-hero">
+          <h1>Hey {user.first_name}! Let’s find something fun 🕺</h1>
+        </section>
+
+        <section className="dashboard-favorites">
+          <h2>Favorites</h2>
+
+          <div className="favorite-events">
+            <Link className="favorite-event"></Link>
+          </div>
+        </section>
+      </section>
+    )
+  );
 }

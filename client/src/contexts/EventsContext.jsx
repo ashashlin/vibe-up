@@ -8,6 +8,7 @@ export function EventsProvider({ children }) {
   const [accessToken, setAccessToken] = useState(
     localStorage.getItem("accessToken") || null
   );
+  const [user, setUser] = useState(localStorage.getItem("user") || null);
 
   const value = {
     cities,
@@ -16,6 +17,8 @@ export function EventsProvider({ children }) {
     setEvents,
     accessToken,
     setAccessToken,
+    user,
+    setUser,
   };
 
   return (
