@@ -6,12 +6,14 @@ import "./SignUp.css";
 
 export default function SignUp() {
   const [error, setError] = useState(null);
-  const { setAccessToken } = useEventsContext();
+  const { setAccessToken, setCities } = useEventsContext();
   const navigate = useNavigate();
 
   useEffect(() => {
     document.querySelector("main").classList.add("sign-up-flex");
     document.querySelector(".home-link").classList.add("logo-color");
+
+    setCities(null);
 
     return () => {
       document.querySelector("main").classList.remove("sign-up-flex");
@@ -43,7 +45,7 @@ export default function SignUp() {
       navigate("/dashboard");
     } catch (error) {
       console.error(error);
-      setError(error);
+      setError(error.response?.data || "Something went wrong.");
     }
   }
 
@@ -82,7 +84,7 @@ export default function SignUp() {
         Already have an account? Log in here
       </Link>
 
-      {error && <p className="error-msg">{error.response?.data}</p>}
+      {error && <p className="error-msg">{error}</p>}
     </section>
   );
 }

@@ -4,7 +4,7 @@ import NavItem from "./NavItem";
 import { useEventsContext } from "../../contexts/eventsContext";
 
 export default function NavBar() {
-  const { cities } = useEventsContext();
+  const { cities, accessToken } = useEventsContext();
 
   return (
     <nav className="nav">
@@ -35,8 +35,18 @@ export default function NavBar() {
       </NavGroup>
 
       <NavGroup nav="user-nav">
-        <NavItem path="signup">Sign up</NavItem>
-        <NavItem path="login">Login</NavItem>
+        {!accessToken ? (
+          <NavItem path="signup">Sign up</NavItem>
+        ) : (
+          <NavItem path="dashboard">Dashboard</NavItem>
+        )}
+        {!accessToken ? (
+          <NavItem path="login">Login</NavItem>
+        ) : (
+          <NavItem path="/" type="logout">
+            Log out
+          </NavItem>
+        )}
       </NavGroup>
     </nav>
   );

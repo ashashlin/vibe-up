@@ -62,8 +62,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 6rem;
-  height: 2.75rem;
+  padding: 0.7rem 1.5rem 0.6rem;
 }
 
 /* Need this to wrap the dropdown menu so the vertical paddings stay when we scroll */

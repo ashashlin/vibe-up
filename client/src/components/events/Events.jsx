@@ -108,7 +108,7 @@ export default function Events() {
         }
       } catch (error) {
         console.error(error);
-        setError(error.message);
+        setError(error.response?.data || "Something went wrong.");
       } finally {
         setLoading(false);
       }
@@ -126,7 +126,7 @@ export default function Events() {
       </section>
     );
 
-  if (error) return <p className="error-msg">{error.message}</p>;
+  if (error) return <p className="error-msg">{error}</p>;
 
   return (
     <section className="events-section">

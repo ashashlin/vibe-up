@@ -44,3 +44,16 @@ export async function getUserByEmail(email, password) {
   delete user.password;
   return user;
 }
+
+export async function getUserById(id) {
+  const sql = `
+    SELECT * FROM users
+    WHERE id = $1;
+  `;
+  const {
+    rows: [user],
+  } = await db.query(sql, [id]);
+
+  delete user.password;
+  return user;
+}
