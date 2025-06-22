@@ -25,7 +25,7 @@ export function EventsProvider({ children }) {
   };
 
   const checkIfFavorited = (event) => {
-    const eventId = event.id;
+    const eventId = event?.id;
 
     return favoriteEvents.some((favEvent) => favEvent.event_id === eventId);
   };

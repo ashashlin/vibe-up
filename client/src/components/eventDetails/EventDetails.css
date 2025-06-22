@@ -59,6 +59,11 @@
   gap: 4rem;
 }
 
+/* + * is the immediate sibling after */
+.event-venue-container + * {
+  margin-top: 2rem;
+}
+
 .event-venue-content {
   display: flex;
   flex-direction: column;
@@ -91,6 +96,11 @@
 .event-venue-img {
   width: 80%;
   border-radius: 2rem;
+}
+
+.event-details-section .favorite-btn {
+  top: 1.5rem;
+  right: 1.5rem;
 }
 
 .get-tickets {

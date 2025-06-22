@@ -9,13 +9,20 @@ import eventDescriptions from "../../data/eventDescriptions";
 import "./EventDetails.css";
 
 export default function EventDetails() {
-  const { setCities, events, setEvents } = useEventsContext();
-  console.log(events);
+  const {
+    setCities,
+    events,
+    setEvents,
+    checkIfFavorited,
+    handleFavoriteEvent,
+  } = useEventsContext();
+  // console.log(events);
   const { id } = useParams();
   const cityId = Number(id);
   const city = usCities.find((city) => city.id === cityId);
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
+  console.log(event);
   const [loading, setLoading] = useState(false);
   const [similarEventsLoading, setSimilarEventsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -46,11 +53,11 @@ export default function EventDetails() {
 
         const res = await axios.get(`/api/events/${eventId}`);
         const data = res.data;
-        console.log(data);
+        // console.log(data);
         setEvent(data.data);
       } catch (error) {
         console.error(error);
-        setError(error.message);
+        setError(error.response?.data || "Something went wrong.");
       } finally {
         setLoading(false);
       }
@@ -101,7 +108,7 @@ export default function EventDetails() {
         }
       } catch (error) {
         console.error(error);
-        setSimilarEventsError(error.message);
+        setSimilarEventsError(error.response?.data || "Something went wrong.");
       } finally {
         setSimilarEventsLoading(false);
       }
@@ -110,6 +117,15 @@ export default function EventDetails() {
     if (!events) getEvents();
   }, []);
 
+  const handleFavoriteEventWithError = async (event) => {
+    try {
+      await handleFavoriteEvent(event);
+    } catch (error) {
+      console.error(error);
+      setError(error.response?.data || "Something went wrong.");
+    }
+  };
+
   if (!city)
     return (
       <section className="events-error">
@@ -117,7 +133,7 @@ export default function EventDetails() {
       </section>
     );
 
-  if (error) return <p className="error-msg">{error.message}</p>;
+  if (error) return <p className="error-msg">{error}</p>;
 
   if (loading) return <p className="event-msg">Loading event...</p>;
 
@@ -155,6 +171,29 @@ export default function EventDetails() {
             alt={`${event?.name} image`}
             className="event-img"
           />
+          <button
+            className="favorite-btn"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleFavoriteEventWithError(event);
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill={checkIfFavorited(event) ? "#f97289" : "none"}
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke={checkIfFavorited(event) ? "#f97289" : "#ffffff"}
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+              />
+            </svg>
+          </button>
         </div>
       </section>
 
@@ -180,11 +219,12 @@ export default function EventDetails() {
           </p>
         </div>
 
-        {event?._embedded?.venues &&
-          event?._embedded?.venues.map((venue) => (
-            <div key={venue.id} className="event-venue">
-              <h2>About the venue</h2>
-              <div className="event-venue-container">
+        {event?._embedded?.venues && (
+          <div className="event-venue">
+            <h2>About the venue</h2>
+
+            {event?._embedded?.venues.map((venue) => (
+              <div key={venue.id} className="event-venue-container">
                 <div className="event-venue-content">
                   <div className="event-venue-name-address">
                     <h3 className="event-venue-name">{venue.name}</h3>
@@ -217,8 +257,9 @@ export default function EventDetails() {
                   />
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        )}
 
         <Link to={event?.url} target="_blank" className="get-tickets">
           Get tickets now

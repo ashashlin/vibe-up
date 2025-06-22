@@ -6,6 +6,7 @@ import EventDetails from "./components/eventDetails/EventDetails";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/sign-up/SignUp";
 import Dashboard from "./pages/dashboard/Dashboard";
+import FavoriteEventDetails from "./components/favoriteEventDetails/FavoriteEventDetails";
 import "./App.css";
 
 export default function App() {
@@ -18,6 +19,10 @@ export default function App() {
         <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<Login />} />
         <Route path="dashboard" element={<Dashboard />} />
+        <Route
+          path="dashboard/favorites/:eventId"
+          element={<FavoriteEventDetails />}
+        />
       </Route>
     </Routes>
   );

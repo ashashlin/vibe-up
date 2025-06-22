@@ -19,9 +19,7 @@ export default function Events() {
     events,
     setEvents,
     user,
-    accessToken,
     getFavorites,
-    favoriteEvents,
     checkIfFavorited,
     handleFavoriteEvent,
   } = useEventsContext();
@@ -143,34 +141,6 @@ export default function Events() {
 
     loadFavorites();
   }, []);
-
-  // function checkIfFavorited(event) {
-  //   const eventId = event.id;
-
-  //   return favoriteEvents.some((favEvent) => favEvent.event_id === eventId);
-  // }
-
-  // async function handleFavoriteEvent(event) {
-  //   if (!user) return navigate("/login");
-
-  //   try {
-  //     await axios.post(
-  //       "/api/favorites",
-  //       {
-  //         event,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${accessToken}`,
-  //         },
-  //       }
-  //     );
-  //     await getFavorites();
-  //   } catch (error) {
-  //     console.error(error);
-  //     setError(error.response?.data || "Something went wrong.");
-  //   }
-  // }
 
   const handleFavoriteEventWithError = async (event) => {
     try {
