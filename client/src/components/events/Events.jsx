@@ -14,8 +14,17 @@ import useVibeFilters from "../../hooks/useVibeFilters";
 import "./Events.css";
 
 export default function Events() {
-  const { setCities, events, setEvents, user, accessToken } =
-    useEventsContext();
+  const {
+    setCities,
+    events,
+    setEvents,
+    user,
+    accessToken,
+    getFavorites,
+    favoriteEvents,
+    checkIfFavorited,
+    handleFavoriteEvent,
+  } = useEventsContext();
   const { id } = useParams();
   const cityId = Number(id);
   const city = usCities.find((city) => city.id === cityId);
@@ -28,8 +37,6 @@ export default function Events() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
-  const [favoriteEvents, setFavoriteEvents] = useState([]);
 
   useEffect(() => {
     if (city) {
@@ -122,54 +129,57 @@ export default function Events() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [cityId, vibeFiltersString, page]);
 
-  const getFavorites = async () => {
+  useEffect(() => {
+    if (!user) return;
+
+    const loadFavorites = async () => {
+      try {
+        await getFavorites();
+      } catch (error) {
+        console.error(error);
+        setError(error.response?.data || "Something went wrong.");
+      }
+    };
+
+    loadFavorites();
+  }, []);
+
+  // function checkIfFavorited(event) {
+  //   const eventId = event.id;
+
+  //   return favoriteEvents.some((favEvent) => favEvent.event_id === eventId);
+  // }
+
+  // async function handleFavoriteEvent(event) {
+  //   if (!user) return navigate("/login");
+
+  //   try {
+  //     await axios.post(
+  //       "/api/favorites",
+  //       {
+  //         event,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${accessToken}`,
+  //         },
+  //       }
+  //     );
+  //     await getFavorites();
+  //   } catch (error) {
+  //     console.error(error);
+  //     setError(error.response?.data || "Something went wrong.");
+  //   }
+  // }
+
+  const handleFavoriteEventWithError = async (event) => {
     try {
-      const res = await axios.get("/api/favorites", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      const favorites = res.data.favorites;
-      setFavoriteEvents(favorites);
+      await handleFavoriteEvent(event);
     } catch (error) {
       console.error(error);
       setError(error.response?.data || "Something went wrong.");
     }
   };
-
-  useEffect(() => {
-    if (!user) return;
-
-    getFavorites();
-  }, []);
-
-  function checkIfFavorited(event) {
-    const eventId = event.id;
-
-    return favoriteEvents.some((favEvent) => favEvent.event_id === eventId);
-  }
-
-  async function handleFavoriteEvent(event) {
-    if (!user) return navigate("/login");
-
-    try {
-      await axios.post(
-        "/api/favorites",
-        {
-          event,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      await getFavorites();
-    } catch (error) {
-      console.error(error);
-      setError(error.response?.data || "Something went wrong.");
-    }
-  }
 
   if (!city)
     return (
@@ -238,7 +248,7 @@ export default function Events() {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    handleFavoriteEvent(events?.[0]);
+                    handleFavoriteEventWithError(events?.[0]);
                   }}
                 >
                   <svg
@@ -307,7 +317,7 @@ export default function Events() {
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        handleFavoriteEvent(event);
+                        handleFavoriteEventWithError(event);
                       }}
                     >
                       <svg
