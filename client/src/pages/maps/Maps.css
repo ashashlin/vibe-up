@@ -23,10 +23,25 @@
 
 .reset-button {
   position: absolute;
-  top: 7.2rem;
+  top: 10.3rem;
   z-index: 1;
-  left: 12px;
-  padding: 4px 10px;
-  border-radius: 10px;
+  left: 1rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
   cursor: pointer;
+}
+
+.city-select {
+  position: absolute;
+  top: 7.3rem;
+  left: 1rem;
+  z-index: 10;
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.city-select select {
+  border: none;
+  color: #47201c;
 }
