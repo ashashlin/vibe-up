@@ -43,7 +43,7 @@ export default function Dashboard() {
           },
         });
         const user = res.data.user;
-        console.log(user);
+        // console.log(user);
         setUser(user);
         localStorage.setItem("user", user);
       } catch (error) {
@@ -123,8 +123,8 @@ export default function Dashboard() {
     }
   };
 
-  console.log(favoriteEvents);
-  console.log(eventsDetails);
+  // console.log(favoriteEvents);
+  // console.log(eventsDetails);
 
   if (error) return <p className="error-msg">{error}</p>;
 

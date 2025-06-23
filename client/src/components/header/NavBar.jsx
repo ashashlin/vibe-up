@@ -32,6 +32,7 @@ export default function NavBar() {
         >
           {!cities ? "Cities" : cities}
         </NavItem>
+        <NavItem path="maps">Maps</NavItem>
       </NavGroup>
 
       <NavGroup nav="user-nav">
