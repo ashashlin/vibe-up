@@ -45,3 +45,25 @@
   border: none;
   color: #47201c;
 }
+
+.my-popup,
+.mapboxgl-popup-content {
+  background-color: aliceblue;
+  border-radius: 1rem;
+}
+
+.mapboxgl-popup-tip {
+  display: none;
+}
+
+.my-popup {
+  padding: 1rem;
+}
+
+.my-popup .event-img-container {
+  margin-bottom: 0.5rem;
+}
+
+.my-popup .event-name {
+  font-size: 1rem;
+}

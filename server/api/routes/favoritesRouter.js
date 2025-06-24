@@ -33,7 +33,6 @@ favoritesRouter.use(requireUser);
 favoritesRouter.get("/", async (req, res, next) => {
   try {
     const user = req.user;
-    console.log(user);
     const favorites = await getFavoritesByUserId(user.id);
     res.json({ favorites });
   } catch (error) {
@@ -46,7 +45,6 @@ favoritesRouter.post("/", async (req, res, next) => {
     const user = req.user;
     const userId = user.id;
     const event = req.body.event;
-    console.log(event);
     const eventId = event.id;
     const eventName = event.name;
     const eventUrl = event.url;

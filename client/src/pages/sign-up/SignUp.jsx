@@ -39,7 +39,6 @@ export default function SignUp() {
         lastName,
       });
       const accessToken = res.data.accessToken;
-      console.log(accessToken);
       setAccessToken(accessToken);
       localStorage.setItem("accessToken", accessToken);
       navigate("/dashboard");

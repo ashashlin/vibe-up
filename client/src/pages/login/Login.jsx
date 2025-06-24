@@ -35,7 +35,6 @@ export default function Login() {
         password,
       });
       const accessToken = res.data.accessToken;
-      console.log(accessToken);
       setAccessToken(accessToken);
       localStorage.setItem("accessToken", accessToken);
       navigate("/dashboard");

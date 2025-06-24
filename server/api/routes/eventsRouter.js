@@ -117,6 +117,41 @@ eventsRouter.get("/", async (req, res, next) => {
   }
 });
 
+// Get all events for a city for the map feature
+eventsRouter.get("/all", async (req, res, next) => {
+  try {
+    const { cityId } = req.query;
+    const events = [];
+
+    const response = await axios.get(`${url}/discovery/v2/events`, {
+      params: {
+        apikey: apiKey,
+        marketId: cityId,
+      },
+    });
+    const data = response.data;
+    events.push(...data._embedded?.events);
+
+    let nextDataset = data._links?.next?.href;
+    let loopCount = 0;
+    const maxLoops = 8;
+
+    while (nextDataset && loopCount < maxLoops) {
+      const reqUrl = `${url}${nextDataset}&apikey=${apiKey}`;
+      const currentResponse = await axios.get(reqUrl);
+      const currentData = currentResponse.data;
+      events.push(...currentData._embedded?.events);
+
+      nextDataset = currentData._links?.next?.href;
+      loopCount++;
+    }
+
+    res.json({ events });
+  } catch (error) {
+    next(error);
+  }
+});
+
 eventsRouter.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;

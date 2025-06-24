@@ -28,8 +28,6 @@ async function seed() {
     emails.push(email);
 
     const password = faker.internet.password();
-    // delete later
-    console.log(email, password);
 
     const firstName = firstNames[i];
     const lastName = lastNames[i];

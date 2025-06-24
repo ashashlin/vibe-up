@@ -20,6 +20,7 @@ export default function Events() {
     setEvents,
     user,
     getFavorites,
+    setFavoriteEvents,
     checkIfFavorited,
     handleFavoriteEvent,
   } = useEventsContext();
@@ -86,7 +87,6 @@ export default function Events() {
           },
         });
         const data = res.data;
-        // console.log(data);
         setLastPage(data.data.page?.totalPages - 1);
 
         if (vibeFilters.includes("all vibes")) {
@@ -128,7 +128,7 @@ export default function Events() {
   }, [cityId, vibeFiltersString, page]);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user) return setFavoriteEvents([]);
 
     const loadFavorites = async () => {
       try {

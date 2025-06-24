@@ -12,7 +12,6 @@ export default function EventDetails() {
     useEventsContext();
   const { eventId } = useParams();
   const [eventDetails, setEventDetails] = useState([]);
-  console.log(eventDetails);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 

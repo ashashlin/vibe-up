@@ -6,7 +6,7 @@ main.dashboard-bg {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  padding: 3rem 7rem;
+  padding: 2rem 7rem;
 }
 
 .dashboard h1 {

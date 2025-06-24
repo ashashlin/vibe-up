@@ -16,13 +16,11 @@ export default function EventDetails() {
     checkIfFavorited,
     handleFavoriteEvent,
   } = useEventsContext();
-  // console.log(events);
   const { id } = useParams();
   const cityId = Number(id);
   const city = usCities.find((city) => city.id === cityId);
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
-  console.log(event);
   const [loading, setLoading] = useState(false);
   const [similarEventsLoading, setSimilarEventsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -53,7 +51,6 @@ export default function EventDetails() {
 
         const res = await axios.get(`/api/events/${eventId}`);
         const data = res.data;
-        // console.log(data);
         setEvent(data.data);
       } catch (error) {
         console.error(error);
@@ -79,7 +76,6 @@ export default function EventDetails() {
           },
         });
         const data = res.data;
-        // console.log(data);
 
         if (vibeFiltersString === "all vibes") {
           const sorted = data.data._embedded.events.sort((a, b) => {
