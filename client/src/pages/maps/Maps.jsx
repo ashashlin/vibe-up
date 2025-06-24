@@ -10,7 +10,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "./Maps.css";
 
 export default function Maps() {
-  const { setCities } = useEventsContext();
+  const { setCities, setOpenSidebar } = useEventsContext();
   const mapRef = useRef();
   const mapContainerRef = useRef();
   const INITIAL_CENTER = [-74.0242, 40.6941];
@@ -24,6 +24,7 @@ export default function Maps() {
 
   useEffect(() => {
     setCities(null);
+    setOpenSidebar(false);
   }, []);
 
   useEffect(() => {

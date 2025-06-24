@@ -91,6 +91,7 @@ body.home-bg {
 
 main {
   flex: 1;
+  /* padding-top: 4.75rem; */
 }
 
 a {

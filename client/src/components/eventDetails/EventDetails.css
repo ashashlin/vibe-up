@@ -120,3 +120,32 @@
 .similar-events-section .events-msg {
   margin-top: 2rem;
 }
+
+/* 1000px */
+@media (max-width: 62.5rem) {
+  .event-details-hero .event-name {
+    font-size: 2rem;
+  }
+
+  .similar-events {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 775px */
+@media (max-width: 48.4375rem) {
+  .event-details-hero {
+    flex-direction: column;
+  }
+
+  /* .similar-events {
+    grid-template-columns: repeat(2, 1fr);
+  } */
+}
+
+/* 650px */
+@media (max-width: 40.625rem) {
+  .similar-events {
+    grid-template-columns: 1fr;
+  }
+}

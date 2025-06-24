@@ -23,6 +23,7 @@ export default function Events() {
     setFavoriteEvents,
     checkIfFavorited,
     handleFavoriteEvent,
+    setOpenSidebar,
   } = useEventsContext();
   const { id } = useParams();
   const cityId = Number(id);
@@ -42,6 +43,10 @@ export default function Events() {
       setCities(`📍 ${city.name}`);
     }
   }, [city, setCities]);
+
+  useEffect(() => {
+    setOpenSidebar(false);
+  }, []);
 
   const { vibeFilters, handleVibeChange, searchParams, setSearchParams } =
     useVibeFilters(cityId);

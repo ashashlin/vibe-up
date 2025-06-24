@@ -74,6 +74,7 @@ main.dashboard-bg {
 .favorite-event {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1.5rem;
 }
 
@@ -88,4 +89,39 @@ main.dashboard-bg {
 .favorite-events .favorite-btn {
   top: 5rem;
   right: 2rem;
+}
+
+/* 1000px */
+@media (max-width: 62.5rem) {
+  .favorite-events .event-img-container {
+    width: 17rem;
+    height: 17rem;
+  }
+}
+
+/* 780px */
+@media (max-width: 48.75rem) {
+  .favorite-events .event-img-container {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+
+/* 650px */
+@media (max-width: 40.625rem) {
+  .dashboard {
+    padding: 2rem 4rem;
+  }
+
+  .favorite-events {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* 450px */
+@media (max-width: 28.125rem) {
+  .dashboard {
+    padding: 2rem;
+  }
 }

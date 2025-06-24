@@ -6,6 +6,7 @@ const EventsContext = createContext();
 
 export function EventsProvider({ children }) {
   const [cities, setCities] = useState(null);
+  const [openSidebar, setOpenSidebar] = useState(false);
   const [events, setEvents] = useState(null);
   const [accessToken, setAccessToken] = useState(
     localStorage.getItem("accessToken") || null
@@ -71,6 +72,8 @@ export function EventsProvider({ children }) {
     checkIfFavorited,
     handleFavoriteEvent,
     deleteFavoriteEvent,
+    openSidebar,
+    setOpenSidebar,
   };
 
   return (

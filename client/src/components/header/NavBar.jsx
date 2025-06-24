@@ -1,10 +1,29 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import NavGroup from "./NavGroup";
 import NavItem from "./NavItem";
 import { useEventsContext } from "../../contexts/eventsContext";
+import SidebarButton from "./SidebarButton";
+import Sidebar from "./Sidebar";
 
 export default function NavBar() {
-  const { cities, accessToken } = useEventsContext();
+  const { cities, accessToken, openSidebar } = useEventsContext();
+  const [screenWidth, setScreenWidth] = useState(null);
+
+  useEffect(() => {
+    const updateScreenWidth = () => {
+      const screenWidth = window.innerWidth;
+      setScreenWidth(screenWidth);
+    };
+
+    updateScreenWidth();
+
+    window.addEventListener("resize", updateScreenWidth);
+
+    return () => {
+      window.removeEventListener("resize", updateScreenWidth);
+    };
+  }, []);
 
   return (
     <nav className="nav">
@@ -32,23 +51,32 @@ export default function NavBar() {
         >
           {!cities ? "Cities" : cities}
         </NavItem>
-        <NavItem path="maps">Maps</NavItem>
+        {screenWidth > 500 && <NavItem path="maps">Maps</NavItem>}
+
+        {screenWidth <= 950 && (
+          <>
+            <SidebarButton />
+            {openSidebar && <Sidebar screenWidth={screenWidth} />}
+          </>
+        )}
       </NavGroup>
 
-      <NavGroup nav="user-nav">
-        {!accessToken ? (
-          <NavItem path="signup">Sign up</NavItem>
-        ) : (
-          <NavItem path="dashboard">Dashboard</NavItem>
-        )}
-        {!accessToken ? (
-          <NavItem path="login">Login</NavItem>
-        ) : (
-          <NavItem path="/" type="logout">
-            Log out
-          </NavItem>
-        )}
-      </NavGroup>
+      {screenWidth > 950 && (
+        <NavGroup nav="user-nav">
+          {!accessToken ? (
+            <NavItem path="signup">Sign up</NavItem>
+          ) : (
+            <NavItem path="dashboard">Dashboard</NavItem>
+          )}
+          {!accessToken ? (
+            <NavItem path="login">Login</NavItem>
+          ) : (
+            <NavItem path="/" type="logout">
+              Log out
+            </NavItem>
+          )}
+        </NavGroup>
+      )}
     </nav>
   );
 }

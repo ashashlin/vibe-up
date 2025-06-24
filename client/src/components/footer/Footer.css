@@ -55,3 +55,33 @@
 .footer-credit {
   font-size: 0.8rem;
 }
+
+@media (max-width: 51.25rem) {
+  .main-footer {
+    padding: 2rem 2.5rem;
+  }
+
+  .footer-logo {
+    font-size: 2rem;
+  }
+
+  .footer-logo svg {
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+
+  .footer-list {
+    font-size: 1rem;
+  }
+
+  .footer-list h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 42.75rem) {
+  .footer-container {
+    flex-direction: column;
+    gap: 3rem;
+  }
+}

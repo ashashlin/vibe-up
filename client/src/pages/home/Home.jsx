@@ -8,7 +8,7 @@ import sfVid from "../../assets/sf-vid.mp4";
 import "./Home.css";
 
 export default function Home() {
-  const { setCities } = useEventsContext();
+  const { setCities, setOpenSidebar } = useEventsContext();
 
   useEffect(() => {
     document.body.classList.add("home-bg");
@@ -22,7 +22,8 @@ export default function Home() {
 
   useEffect(() => {
     setCities(null);
-  }, [setCities]);
+    setOpenSidebar(false);
+  }, []);
 
   return (
     <section className="home">

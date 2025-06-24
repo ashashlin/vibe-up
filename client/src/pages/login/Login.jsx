@@ -6,7 +6,7 @@ import "./Login.css";
 
 export default function Login() {
   const [error, setError] = useState(null);
-  const { setAccessToken, setCities } = useEventsContext();
+  const { setAccessToken, setCities, setOpenSidebar } = useEventsContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,6 +14,7 @@ export default function Login() {
     document.querySelector(".home-link").classList.add("logo-color");
 
     setCities(null);
+    setOpenSidebar(false);
 
     return () => {
       document.querySelector("main").classList.remove("login-flex");

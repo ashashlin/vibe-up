@@ -198,3 +198,62 @@
   fill: #f97289;
   stroke: #f97289;
 }
+
+@media (max-width: 62.5rem) {
+  .feature-event {
+    margin: 0 auto 2rem;
+  }
+
+  .feature-event .event-img-container {
+    flex-basis: 70%;
+  }
+
+  .events {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 51.25rem) {
+  .events-hero h1 {
+    font-size: 3rem;
+  }
+
+  .events-section {
+    padding: 1rem 2rem;
+  }
+
+  .events-hero {
+    margin-bottom: 2rem;
+  }
+
+  .vibe-filters {
+    gap: 0.7rem;
+  }
+
+  .vibe-filter {
+    padding: 0.3rem 1rem;
+  }
+
+  .feature-event .event-name {
+    font-size: 1.5rem;
+  }
+
+  .events {
+    padding: 1rem;
+  }
+
+  .event-name {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 39.375rem) {
+  .feature-event {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .events {
+    grid-template-columns: 1fr;
+  }
+}
