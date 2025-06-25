@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import dayjs from "dayjs";
-import { useEventsContext } from "../../contexts/eventsContext";
+import { useEventsContext } from "../../contexts/EventsContext.jsx";
 import usCities from "../../data/usCities";
 import eventIntros from "../../data/eventIntros";
 import eventDescriptions from "../../data/eventDescriptions";

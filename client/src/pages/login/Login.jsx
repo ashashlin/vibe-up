@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useEventsContext } from "../../contexts/eventsContext";
+import { useEventsContext } from "../../contexts/EventsContext.jsx";
 import "./Login.css";
 
 export default function Login() {

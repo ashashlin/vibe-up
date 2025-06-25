@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import axios from "axios";
 import dayjs from "dayjs";
-import { useEventsContext } from "../../contexts/eventsContext";
+import { useEventsContext } from "../../contexts/EventsContext.jsx";
 import usCities from "../../data/usCities";
 import { vibes } from "../../data/vibes";
 import useVibeFilters from "../../hooks/useVibeFilters";

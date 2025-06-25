@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEventsContext } from "../../contexts/eventsContext";
+import { useEventsContext } from "../../contexts/EventsContext.jsx";
 
 export default function Sidebar({ screenWidth }) {
   const { setOpenSidebar } = useEventsContext();

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { useEventsContext } from "../../contexts/eventsContext";
+import { useEventsContext } from "../../contexts/EventsContext.jsx";
 import chicagoVid from "../../assets/chicago-vid.mp4";
 import laVid from "../../assets/la-vid.mp4";
 import nycVid from "../../assets/nyc-vid.mp4";

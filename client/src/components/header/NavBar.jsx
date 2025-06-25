@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import NavGroup from "./NavGroup";
 import NavItem from "./NavItem";
-import { useEventsContext } from "../../contexts/eventsContext";
+import { useEventsContext } from "../../contexts/EventsContext.jsx";
 import SidebarButton from "./SidebarButton";
 import Sidebar from "./Sidebar";
 

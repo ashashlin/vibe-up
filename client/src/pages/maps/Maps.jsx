@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import mapboxgl from "mapbox-gl";
 import axios from "axios";
-import { useEventsContext } from "../../contexts/eventsContext";
+import { useEventsContext } from "../../contexts/EventsContext.jsx";
 import usCities from "../../data/usCities";
 import cityCoordinates from "../../data/cityCoordinates";
 import PopupContent from "./PopupContent";

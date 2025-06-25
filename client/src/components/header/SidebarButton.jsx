@@ -1,4 +1,4 @@
-import { useEventsContext } from "../../contexts/eventsContext";
+import { useEventsContext } from "../../contexts/EventsContext.jsx";
 
 export default function SidebarButton() {
   const { setOpenSidebar } = useEventsContext();
