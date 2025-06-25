@@ -37,11 +37,14 @@ export default function Dashboard() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.get("/api/users/dashboard", {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/users/dashboard`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
         const user = res.data.user;
         setUser(user);
         localStorage.setItem("user", user);
@@ -78,11 +81,14 @@ export default function Dashboard() {
         const eventsDetails = [];
 
         for (const event of favoriteEvents) {
-          const res = await axios.get(`/api/favorites/${event.event_id}`, {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          });
+          const res = await axios.get(
+            `${import.meta.env.VITE_API_URL}/api/favorites/${event.event_id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          );
           const eventDetails = res.data.eventDetails;
           eventsDetails.push(eventDetails);
         }

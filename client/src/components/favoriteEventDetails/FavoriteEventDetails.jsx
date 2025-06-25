@@ -25,11 +25,14 @@ export default function EventDetails() {
         setLoading(true);
         setError(null);
 
-        const res = await axios.get(`/api/favorites/${eventId}`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/favorites/${eventId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
         const eventDetails = res.data.eventDetails;
 
         setEventDetails(eventDetails);

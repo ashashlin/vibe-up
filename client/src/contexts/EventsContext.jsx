@@ -16,11 +16,14 @@ export function EventsProvider({ children }) {
   const navigate = useNavigate();
 
   const getFavorites = async () => {
-    const res = await axios.get("/api/favorites", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const res = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/favorites`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     const favorites = res.data.favorites;
     setFavoriteEvents(favorites);
   };
@@ -35,7 +38,7 @@ export function EventsProvider({ children }) {
     if (!user) return navigate("/login");
 
     await axios.post(
-      "/api/favorites",
+      `${import.meta.env.VITE_API_URL}/api/favorites`,
       {
         event,
       },
@@ -49,11 +52,14 @@ export function EventsProvider({ children }) {
   };
 
   const deleteFavoriteEvent = async (event) => {
-    await axios.delete(`/api/favorites/${event.id}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    await axios.delete(
+      `${import.meta.env.VITE_API_URL}/api/favorites/${event.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     await getFavorites();
   };
 

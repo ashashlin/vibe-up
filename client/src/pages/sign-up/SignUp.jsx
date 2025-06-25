@@ -33,12 +33,15 @@ export default function SignUp() {
       const firstName = formData.get("first-name");
       const lastName = formData.get("last-name");
 
-      const res = await axios.post("/api/users/signup", {
-        email,
-        password,
-        firstName,
-        lastName,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/users/signup`,
+        {
+          email,
+          password,
+          firstName,
+          lastName,
+        }
+      );
       const accessToken = res.data.accessToken;
       setAccessToken(accessToken);
       localStorage.setItem("accessToken", accessToken);

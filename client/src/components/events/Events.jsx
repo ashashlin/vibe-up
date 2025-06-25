@@ -84,13 +84,16 @@ export default function Events() {
       setError(null);
 
       try {
-        const res = await axios.get("/api/events", {
-          params: {
-            cityId,
-            vibe: vibeFilters.join(","),
-            page,
-          },
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/events`,
+          {
+            params: {
+              cityId,
+              vibe: vibeFilters.join(","),
+              page,
+            },
+          }
+        );
         const data = res.data;
         setLastPage(data.data.page?.totalPages - 1);
 

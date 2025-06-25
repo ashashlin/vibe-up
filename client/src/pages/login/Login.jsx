@@ -31,10 +31,13 @@ export default function Login() {
       const email = formData.get("email");
       const password = formData.get("password");
 
-      const res = await axios.post("/api/users/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/users/login`,
+        {
+          email,
+          password,
+        }
+      );
       const accessToken = res.data.accessToken;
       setAccessToken(accessToken);
       localStorage.setItem("accessToken", accessToken);

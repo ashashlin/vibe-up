@@ -87,11 +87,14 @@ export default function Maps() {
 
     // Fetch events for this city
     try {
-      const res = await axios.get("/api/events/all", {
-        params: {
-          cityId,
-        },
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/events/all`,
+        {
+          params: {
+            cityId,
+          },
+        }
+      );
       const data = res.data;
       const events = data.events;
       setEvents(events);

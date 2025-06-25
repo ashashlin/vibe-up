@@ -49,7 +49,9 @@ export default function EventDetails() {
         setLoading(true);
         setError(null);
 
-        const res = await axios.get(`/api/events/${eventId}`);
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/events/${eventId}`
+        );
         const data = res.data;
         setEvent(data.data);
       } catch (error) {
@@ -69,12 +71,15 @@ export default function EventDetails() {
       setSimilarEventsError(null);
 
       try {
-        const res = await axios.get("/api/events", {
-          params: {
-            cityId,
-            vibe: vibeFiltersString,
-          },
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/events`,
+          {
+            params: {
+              cityId,
+              vibe: vibeFiltersString,
+            },
+          }
+        );
         const data = res.data;
 
         if (vibeFiltersString === "all vibes") {

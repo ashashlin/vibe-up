@@ -1,11 +1,24 @@
 import express from "express";
+import cors from "cors";
 import eventsRouter from "./api/routes/eventsRouter.js";
 import usersRouter from "./api/routes/usersRouter.js";
 import favoritesRouter from "./api/routes/favoritesRouter.js";
 
+const isProduction = process.env.NODE_ENV === "production";
+const corsOrigin = isProduction
+  ? process.env.CORS_ORIGIN // production frontend URL
+  : "http://localhost:5173";
+
 const app = express();
 
 app.use(express.json());
+
+// Allow requests from frontend origin in development
+app.use(
+  cors({
+    origin: corsOrigin,
+  })
+);
 
 app.use("/api/events", eventsRouter);
 app.use("/api/users", usersRouter);
