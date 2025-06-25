@@ -73,7 +73,9 @@ eventsRouter.get("/", async (req, res, next) => {
 
       // If there is a next dataset, get the next dataset and filter. We are doing 5 loops max here bc it would take too long to filter through every page of events from the api
       let loopCount = 0;
-      const maxLoops = 5;
+      // const maxLoops = 5;
+      // Lower to 2 loops to reduce API rate limit errors for deployed app for now
+      const maxLoops = 2;
 
       while (
         nextDataset &&
