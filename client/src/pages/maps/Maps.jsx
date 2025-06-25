@@ -1,3 +1,4 @@
+import { BrowserRouter } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import mapboxgl from "mapbox-gl";
@@ -146,7 +147,11 @@ export default function Maps() {
           }).setDOMContent(container);
 
           const root = ReactDOM.createRoot(container);
-          root.render(<PopupContent cityId={cityId} event={event} />);
+          root.render(
+            <BrowserRouter>
+              <PopupContent cityId={cityId} event={event} />
+            </BrowserRouter>
+          );
 
           let closeTimeout;
           const closePopupIfNotHovering = () => {

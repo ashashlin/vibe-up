@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 
 export default function PopupContent({ cityId, event }) {
   return (
-    <a href={`/events/cities/${cityId}/${event.id}`} target="_blank">
+    <Link to={`/events/cities/${cityId}/${event.id}`} target="_blank">
       <div className="event-img-container">
         <img
           src={
@@ -35,6 +36,6 @@ export default function PopupContent({ cityId, event }) {
           @ {event._embedded?.venues?.[0]?.name || "TBA"}
         </p>
       </div>
-    </a>
+    </Link>
   );
 }
